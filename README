@@ -1,0 +1,56 @@
+Summary:
+
+This is a first draft of a script to generate an apparmor deny
+policy subset based on a set of allow rules.
+
+Motivation:
+
+Apparmor is a pathname-based mandatory access control system whose
+policy is driven by denial statements.  However, in lxc we have
+cases where we want to deny by default, and whitelist some paths.
+For instance, we want to deny write to most of /sys, but make
+exceptions for /sys/fs/cgroup (which may be bind-mounted in a
+write-safe way) and /sys/class/net (which is namespaced so that
+all its contents are owned by the container).  We can represent
+this by
+
+block /sys
+allow /sys/fs/cgroup/*
+allow /sys/class/net/*
+
+Example:
+
+Using the configuration in the file called 'config' in this repo,
+the script provides the following output:
+
+Denies:
+deny /home/user1/[^ddd]*{,/**}
+deny /home/user1/d[^iio]*{,/**}
+deny /home/user1/di[^rp]*{,/**}
+deny /home/user1/dip?*{,/**}
+deny /home/user1/dir1?*{,/**}
+deny /home/user1/dir[^1]*{,/**}
+deny /home/user1/do*/**
+deny /proc/sys/kernel/[^s]*{,/**}
+deny /proc/sys/kernel/s[^h]*{,/**}
+deny /proc/sys/kernel/sh[^m]*{,/**}
+deny /proc/sys/kernel/shm*/**
+deny /sys/[^fc]*{,/**}
+deny /sys/c[^l]*{,/**}
+deny /sys/cl[^a]*{,/**}
+deny /sys/cla[^s]*{,/**}
+deny /sys/clas[^s]*{,/**}
+deny /sys/class/[^n]*{,/**}
+deny /sys/class/n[^e]*{,/**}
+deny /sys/class/ne[^t]*{,/**}
+deny /sys/class/net?*{,/**}
+deny /sys/class?*{,/**}
+deny /sys/f[^s]*{,/**}
+deny /sys/fs/[^c]*{,/**}
+deny /sys/fs/c[^g]*{,/**}
+deny /sys/fs/cg[^r]*{,/**}
+deny /sys/fs/cgr[^o]*{,/**}
+deny /sys/fs/cgro[^u]*{,/**}
+deny /sys/fs/cgrou[^p]*{,/**}
+deny /sys/fs/cgroup?*{,/**}
+deny /sys/fs?*{,/**}
