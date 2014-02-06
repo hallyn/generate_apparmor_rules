@@ -60,3 +60,13 @@ with f and not having s for the second character, or having 3 or more
 characters, will be denied.  If the final path element is a set of files,
 as in 'shm*', then it makes sure that any files existing under any directories
 containing 'shm' are denied.
+
+TODO
+
+There are some assumptions here, which need to be enforced at configuration
+read time (or addressed, but I don't believe we practically have a use case
+to address them):
+  . only /some/path/file* or /some/path/dir/** are allowed.  No special
+    characters allowed in the path, and no '*' elsewhere
+  . no overlapping block chunks.  (i.e. 'block /sys' and '/block /sys/bus')
+Specifically, this is written specifically with proc and sys in mind.
