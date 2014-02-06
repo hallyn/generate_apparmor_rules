@@ -92,8 +92,9 @@ def collect_chars(children, ref, index):
     return r
 
 def append_deny(s):
+    s = "%s wklx," % s
     if s not in denies:
-        denies.append("%s wklx," % s)
+        denies.append(s)
 
 def gen_denies(pathsofar, children):
     for c in children:

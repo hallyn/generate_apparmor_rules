@@ -24,12 +24,7 @@ Using the configuration in the file called 'config' in this repo,
 the script provides the following output:
 
 deny /home/user1/[^d]*{,/**} wklx,
-deny /home/user1/[^d]*{,/**} wklx,
-deny /home/user1/[^d]*{,/**} wklx,
 deny /home/user1/d[^io]*{,/**} wklx,
-deny /home/user1/d[^io]*{,/**} wklx,
-deny /home/user1/d[^io]*{,/**} wklx,
-deny /home/user1/di[^rp]*{,/**} wklx,
 deny /home/user1/di[^rp]*{,/**} wklx,
 deny /home/user1/dip?*{,/**} wklx,
 deny /home/user1/dir1?*{,/**} wklx,
@@ -39,7 +34,6 @@ deny /proc/sys/kernel/[^s]*{,/**} wklx,
 deny /proc/sys/kernel/s[^h]*{,/**} wklx,
 deny /proc/sys/kernel/sh[^m]*{,/**} wklx,
 deny /proc/sys/kernel/shm*/** wklx,
-deny /sys/[^fc]*{,/**} wklx,
 deny /sys/[^fc]*{,/**} wklx,
 deny /sys/c[^l]*{,/**} wklx,
 deny /sys/cl[^a]*{,/**} wklx,
@@ -60,4 +54,9 @@ deny /sys/fs/cgrou[^p]*{,/**} wklx,
 deny /sys/fs/cgroup?*{,/**} wklx,
 deny /sys/fs?*{,/**} wklx,
 
-which can be appended to the container-base apparmor abstraction file.
+which can be appended to the container-base apparmor abstraction file.  It
+ensure that for a path element 'fs', anything not starting with f, or starting
+with f and not having s for the second character, or having 3 or more
+characters, will be denied.  If the final path element is a set of files,
+as in 'shm*', then it makes sure that any files existing under any directories
+containing 'shm' are denied.
