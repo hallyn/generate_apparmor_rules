@@ -1,0 +1,20 @@
+block /proc/sys/kernel
+allow /proc/sys/kernel/shm*
+block /sys
+allow /sys/fs/cgroup/**
+allow /sys/class/net/**
+block /sys/kernel/security/**
+block /sys/firmware/efi/efivars/**
+
+# example input:
+block /home/user1
+allow /home/user1/dir1/**
+allow /home/user1/dip/**
+allow /home/user1/do*
+# and expected output:
+# deny /home/user1/[^d]*/** wklx,
+# deny /home/user1/d[^io]*/** wklx,
+# deny /home/user1/di[^rp]*/** wklx,
+# deny /home/user1/dir[^1]*/** wklx
+# deny /home/user1/dir1?*/** wklx
+# deny /home/user1/dip?*/** wklx,
