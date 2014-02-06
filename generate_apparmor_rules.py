@@ -87,7 +87,8 @@ def collect_chars(children, ref, index):
             continue
         if ref[0:index] != c['path'][0:index]:
             continue
-        r = r + c['path'][index]
+        if c['path'][index] not in r:
+            r = r + c['path'][index]
     return r
 
 def append_deny(s):

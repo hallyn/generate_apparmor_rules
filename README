@@ -5,30 +5,30 @@ policy subset based on a set of allow rules.
 
 Motivation:
 
-Apparmor is a pathname-based mandatory access control system whose
-policy is driven by denial statements.  However, in lxc we have
-cases where we want to deny by default, and whitelist some paths.
-For instance, we want to deny write to most of /sys, but make
-exceptions for /sys/fs/cgroup (which may be bind-mounted in a
-write-safe way) and /sys/class/net (which is namespaced so that
-all its contents are owned by the container).  We can represent
-this by
+Apparmor is a pathname-based mandatory access control system.  It
+evaluates deny rules before allow rules, and deny rules cannot be
+overriden by an allow rule.  However, in lxc we have cases where we want
+to deny by default, and whitelist some paths.  For instance, we want to
+deny write to most of /sys, but make exceptions for /sys/fs/cgroup
+(which may be bind-mounted in a write-safe way) and /sys/class/net
+(which is namespaced so that all its contents are owned by the
+container).  Using this script, we can represent this by
 
 block /sys
 allow /sys/fs/cgroup/*
 allow /sys/class/net/*
 
-Example:
+Specific Example:
 
 Using the configuration in the file called 'config' in this repo,
 the script provides the following output:
 
-deny /home/user1/[^ddd]*{,/**} wklx,
-deny /home/user1/[^ddd]*{,/**} wklx,
-deny /home/user1/[^ddd]*{,/**} wklx,
-deny /home/user1/d[^iio]*{,/**} wklx,
-deny /home/user1/d[^iio]*{,/**} wklx,
-deny /home/user1/d[^iio]*{,/**} wklx,
+deny /home/user1/[^d]*{,/**} wklx,
+deny /home/user1/[^d]*{,/**} wklx,
+deny /home/user1/[^d]*{,/**} wklx,
+deny /home/user1/d[^io]*{,/**} wklx,
+deny /home/user1/d[^io]*{,/**} wklx,
+deny /home/user1/d[^io]*{,/**} wklx,
 deny /home/user1/di[^rp]*{,/**} wklx,
 deny /home/user1/di[^rp]*{,/**} wklx,
 deny /home/user1/dip?*{,/**} wklx,
