@@ -74,8 +74,9 @@ with open(config) as f:
             add_allow(path)
         else:
             print("Unknown command: %s"% cmd)
+            sys.exit(1)
 
-print("%s" % blocks)
+# print("%s" % blocks)
 
 denies=[]
 
@@ -91,7 +92,7 @@ def collect_chars(children, ref, index):
 
 def append_deny(s):
     if s not in denies:
-        denies.append(s)
+        denies.append("%s wklx," % s)
 
 def gen_denies(pathsofar, children):
     for c in children:
@@ -117,6 +118,5 @@ for b in blocks:
     gen_denies(b['path'], b['children'])
 
 denies.sort()
-print("Denies:")
 for d in denies:
     print(d)

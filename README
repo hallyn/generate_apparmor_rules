@@ -23,34 +23,41 @@ Example:
 Using the configuration in the file called 'config' in this repo,
 the script provides the following output:
 
-Denies:
-deny /home/user1/[^ddd]*{,/**}
-deny /home/user1/d[^iio]*{,/**}
-deny /home/user1/di[^rp]*{,/**}
-deny /home/user1/dip?*{,/**}
-deny /home/user1/dir1?*{,/**}
-deny /home/user1/dir[^1]*{,/**}
-deny /home/user1/do*/**
-deny /proc/sys/kernel/[^s]*{,/**}
-deny /proc/sys/kernel/s[^h]*{,/**}
-deny /proc/sys/kernel/sh[^m]*{,/**}
-deny /proc/sys/kernel/shm*/**
-deny /sys/[^fc]*{,/**}
-deny /sys/c[^l]*{,/**}
-deny /sys/cl[^a]*{,/**}
-deny /sys/cla[^s]*{,/**}
-deny /sys/clas[^s]*{,/**}
-deny /sys/class/[^n]*{,/**}
-deny /sys/class/n[^e]*{,/**}
-deny /sys/class/ne[^t]*{,/**}
-deny /sys/class/net?*{,/**}
-deny /sys/class?*{,/**}
-deny /sys/f[^s]*{,/**}
-deny /sys/fs/[^c]*{,/**}
-deny /sys/fs/c[^g]*{,/**}
-deny /sys/fs/cg[^r]*{,/**}
-deny /sys/fs/cgr[^o]*{,/**}
-deny /sys/fs/cgro[^u]*{,/**}
-deny /sys/fs/cgrou[^p]*{,/**}
-deny /sys/fs/cgroup?*{,/**}
-deny /sys/fs?*{,/**}
+deny /home/user1/[^ddd]*{,/**} wklx,
+deny /home/user1/[^ddd]*{,/**} wklx,
+deny /home/user1/[^ddd]*{,/**} wklx,
+deny /home/user1/d[^iio]*{,/**} wklx,
+deny /home/user1/d[^iio]*{,/**} wklx,
+deny /home/user1/d[^iio]*{,/**} wklx,
+deny /home/user1/di[^rp]*{,/**} wklx,
+deny /home/user1/di[^rp]*{,/**} wklx,
+deny /home/user1/dip?*{,/**} wklx,
+deny /home/user1/dir1?*{,/**} wklx,
+deny /home/user1/dir[^1]*{,/**} wklx,
+deny /home/user1/do*/** wklx,
+deny /proc/sys/kernel/[^s]*{,/**} wklx,
+deny /proc/sys/kernel/s[^h]*{,/**} wklx,
+deny /proc/sys/kernel/sh[^m]*{,/**} wklx,
+deny /proc/sys/kernel/shm*/** wklx,
+deny /sys/[^fc]*{,/**} wklx,
+deny /sys/[^fc]*{,/**} wklx,
+deny /sys/c[^l]*{,/**} wklx,
+deny /sys/cl[^a]*{,/**} wklx,
+deny /sys/cla[^s]*{,/**} wklx,
+deny /sys/clas[^s]*{,/**} wklx,
+deny /sys/class/[^n]*{,/**} wklx,
+deny /sys/class/n[^e]*{,/**} wklx,
+deny /sys/class/ne[^t]*{,/**} wklx,
+deny /sys/class/net?*{,/**} wklx,
+deny /sys/class?*{,/**} wklx,
+deny /sys/f[^s]*{,/**} wklx,
+deny /sys/fs/[^c]*{,/**} wklx,
+deny /sys/fs/c[^g]*{,/**} wklx,
+deny /sys/fs/cg[^r]*{,/**} wklx,
+deny /sys/fs/cgr[^o]*{,/**} wklx,
+deny /sys/fs/cgro[^u]*{,/**} wklx,
+deny /sys/fs/cgrou[^p]*{,/**} wklx,
+deny /sys/fs/cgroup?*{,/**} wklx,
+deny /sys/fs?*{,/**} wklx,
+
+which can be appended to the container-base apparmor abstraction file.
